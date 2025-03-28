@@ -14,7 +14,7 @@ public:
 //}
     int rob(vector<int>& arr) {
     
-        int n = arr.size();
+    int n = arr.size();
 
         if(n<0) return 0;
         if (n == 1) return arr[0]; // Handle single house case
@@ -31,5 +31,6 @@ public:
             dp[i] = max(incl, excl);
         }
         return dp[n-1];
+
     }
 };
