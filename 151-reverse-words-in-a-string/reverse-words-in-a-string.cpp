@@ -5,6 +5,7 @@ public:
         string ans ="";
 
         reverse(s.begin(),s.end());
+        cout<<s<<" ";
 
         for(int i=0;i<n;i++){
             string word ="";
