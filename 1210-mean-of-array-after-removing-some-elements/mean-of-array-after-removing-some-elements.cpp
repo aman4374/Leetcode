@@ -1,18 +1,17 @@
 class Solution {
 public:
     double trimMean(vector<int>& arr) {
-    int n = arr.size();
     sort(arr.begin(), arr.end());
-    int trim = n / 20;           // 5% of n
-    int start = trim;
-    int end = n - trim;          // one past the last included index
+
+    int n = arr.size();
+    int removeCount = n * 0.05;
 
     double sum = 0.0;
-    for (int i = start; i < end; ++i) {
+    for (int i = removeCount; i < n - removeCount; ++i) {
         sum += arr[i];
     }
 
-    int count = end - start;     // n - 2*trim
-    return sum / count;
-    }
+    int remaining = n - 2 * removeCount;
+    return sum / remaining;
+  }
 };
