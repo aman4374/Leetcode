@@ -1,41 +1,28 @@
 class Solution {
 public:
-void markRow(vector<vector<int>>& matrix, int n, int m, int i) {
-        for (int j = 0; j < m; j++) {
-            if (matrix[i][j] != 0)
-                matrix[i][j] = 101010; 
-        }
-    }
-
-void markCol(vector<vector<int>>& matrix, int n, int m, int j) {
-        for (int i = 0; i < n; i++) {
-            if (matrix[i][j] != 0)
-                matrix[i][j] = 101010;  
-        }
-    }
-
     void setZeroes(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        int m = matrix[0].size();
+       
+int n = matrix.size();
+int m = matrix[0].size();
+vector<int> row(n,0),col(m,0);
 
-        // Step 1: Mark rows and columns
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (matrix[i][j] == 0) {
-                    markRow(matrix, n, m, i);
-                    markCol(matrix, n, m, j);
-                }
+    // Traverse the matrix:
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (matrix[i][j] == 0) {
+                row[i] = 1;
+                col[j] = 1;
             }
         }
-
-        // Step 2: Replace marked cells with 0
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (matrix[i][j] == 101010) {
-                    matrix[i][j] = 0;
-                }
+    }
+    // Finally, mark all (i, j) as 0
+    // if row[i] or col[j] is marked with 1.
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (row[i] || col[j]) {
+                matrix[i][j] = 0;
             }
         }
-        
+    }
     }
 };
